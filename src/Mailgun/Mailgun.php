@@ -61,6 +61,8 @@ class Mailgun
      */
     private $responseHistory = null;
 
+    const DEFAULT_ENDPOINT = 'api.mailgun.net';
+
     /**
      * @param string|null         $apiKey
      * @param HttpClient|null     $httpClient
@@ -99,7 +101,7 @@ class Mailgun
     ) {
         $httpClient = $configurator->createConfiguredClient();
 
-        return new self($configurator->getApiKey(), $httpClient, 'api.mailgun.net', $hydrator, $requestBuilder);
+        return new self($configurator->getApiKey(), $httpClient, self::DEFAULT_ENDPOINT, $hydrator, $requestBuilder);
     }
 
     /**
@@ -108,7 +110,7 @@ class Mailgun
      *
      * @return Mailgun
      */
-    public static function create($apiKey, $endpoint = 'https://api.mailgun.net')
+    public static function create($apiKey, $endpoint = 'https:/' . self::DEFAULT_ENDPOINT)
     {
         $httpClientConfigurator = (new HttpClientConfigurator())
             ->setApiKey($apiKey)

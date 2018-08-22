@@ -28,16 +28,12 @@ class Event extends HttpApi
      *
      * @return EventResponse|ResponseInterface
      */
-    public function get($domain, array $params = [], $rawResponse = false)
+    public function get($domain, array $params = [])
     {
         Assert::stringNotEmpty($domain);
 
         $response = $this->httpGet(sprintf('/v3/%s/events', $domain), $params);
 
-        if ($rawResponse === true) {
-            return $response;
-        } else {
-            return $this->hydrateResponse($response, EventResponse::class);
-        }
+        return $this->hydrateResponse($response, EventResponse::class);
     }
 }

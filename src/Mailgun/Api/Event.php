@@ -11,6 +11,7 @@ namespace Mailgun\Api;
 
 use Mailgun\Assert;
 use Mailgun\Model\Event\EventResponse;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * {@link https://documentation.mailgun.com/api-events.html}.
@@ -25,14 +26,18 @@ class Event extends HttpApi
      * @param string $domain
      * @param array  $params
      *
-     * @return EventResponse
+     * @return EventResponse|ResponseInterface
      */
-    public function get($domain, array $params = [])
+    public function get($domain, array $params = [], $rawResponse = false)
     {
         Assert::stringNotEmpty($domain);
 
         $response = $this->httpGet(sprintf('/v3/%s/events', $domain), $params);
 
-        return $this->hydrateResponse($response, EventResponse::class);
+        if ($rawResponse === true) {
+            return $response;
+        } else {
+            return $this->hydrateResponse($response, EventResponse::class);
+        }
     }
 }

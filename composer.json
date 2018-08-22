@@ -1,6 +1,6 @@
 {
-    "name": "mailgun/mailgun-php",
-    "description": "The Mailgun SDK provides methods for all API functions.",
+    "name": "rutek/mailgun-php",
+    "description": "Fork of Mailgun's Official SDK for PHP with modified Events API which allows to get raw response",
     "require": {
         "php": "^5.5|^7.0",
         "php-http/httplug": "^1.0",
@@ -35,6 +35,10 @@
         {
             "name": "Travis Swientek",
             "email": "travis@mailgunhq.com"
+        },
+        {
+            "name": "Łukasz Rutkowski",
+            "email": "rrutek@gmail.com"
         }
     ],
     "scripts": {

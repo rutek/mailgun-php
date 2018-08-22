@@ -11,6 +11,7 @@ namespace Mailgun\Api;
 
 use Mailgun\Assert;
 use Mailgun\Model\PagingProvider;
+use Mailgun\Hydrator\ArrayHydrator;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -70,7 +71,9 @@ trait Pagination
      */
     public function getPaginationUrl($url, $class)
     {
-        Assert::stringNotEmpty($class);
+        if (! ($this->hydrator instanceof ArrayHydrator)) {
+            Assert::stringNotEmpty($class);
+        }
 
         if (empty($url)) {
             return;

@@ -110,7 +110,7 @@ class Mailgun
      *
      * @return Mailgun
      */
-    public static function create($apiKey, $endpoint = 'https:/' . self::DEFAULT_ENDPOINT)
+    public static function create($apiKey, $endpoint = 'https://' . self::DEFAULT_ENDPOINT)
     {
         $httpClientConfigurator = (new HttpClientConfigurator())
             ->setApiKey($apiKey)
